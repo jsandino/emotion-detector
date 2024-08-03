@@ -1,5 +1,5 @@
 import pytest
-from emotion_detection import parse_emotions, emotion_detector
+from EmotionDetection.emotion_detection import parse_emotions, emotion_detector
 
 @pytest.fixture
 def sample_data() -> str:
