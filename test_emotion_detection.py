@@ -46,3 +46,7 @@ def test_emotion_detector_yields_sadness():
 
 def test_emotion_detector_yields_fear():
     result = emotion_detector("I am really afraid that this will")
+
+def test_emotion_detector_with_blank_text(expected_emotion_keys):
+    expected_data = {k:None for k in expected_emotion_keys}
+    assert expected_data == emotion_detector("")

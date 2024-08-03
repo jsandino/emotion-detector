@@ -12,14 +12,11 @@ def index():
 @app.route("/emotionDetector")
 def detect_emotion():
     text = request.args["textToAnalyze"]
-    if not text:
-        return "Required argument missing: 'textToAnalyze'", 400
-    
     result = emotion_detector(text)
-    if result:
-        return summarize(result)
-    else:
-        return "Invalid text supplied, try something else'", 400
+    if not result["dominant_emotion"]:
+        return "<b>Invalid text! Please try again!"
+
+    return summarize(result)
 
 
 def summarize(data: dict[str, any]):
