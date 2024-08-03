@@ -3,3 +3,6 @@ init:
 
 test:
 	pytest .
+
+run:
+	python3.11 server.py
