@@ -23,9 +23,26 @@ def expected_emotion_keys() -> tuple[str]:
 def test_parse_emotions(sample_data, expected_parsed_data):
     assert expected_parsed_data == parse_emotions(sample_data)
 
-def test_emotion_detector_results(expected_emotion_keys):
+def test_emotion_detector_result_keys(expected_emotion_keys):
     result = emotion_detector("I love this technology")
     for emotion_key in expected_emotion_keys:
         assert emotion_key in result
-    
 
+def test_emotion_detector_yields_joy():
+    result = emotion_detector("I am glad this happened")
+    assert "joy" == result["dominant_emotion"]
+    
+def test_emotion_detector_yields_anger():
+    result = emotion_detector("I am really mad about this")
+    assert "anger" == result["dominant_emotion"]
+
+def test_emotion_detector_yields_disgust():
+    result = emotion_detector("I feel disgusted just hearing about this")
+    assert "disgust" == result["dominant_emotion"]
+
+def test_emotion_detector_yields_sadness():
+    result = emotion_detector("I am so sad about this")
+    assert "sadness" == result["dominant_emotion"]
+
+def test_emotion_detector_yields_fear():
+    result = emotion_detector("I am really afraid that this will")
